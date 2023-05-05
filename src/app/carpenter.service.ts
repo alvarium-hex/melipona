@@ -30,7 +30,7 @@ export class CarpenterService {
   }
 
   connect(): WebSocket {
-    this.ws = new WebSocket("ws://192.168.86.100:3001");
+    this.ws = new WebSocket("ws://127.0.0.1:3001");
 
     this.ws.onmessage = (event) => {
       let message = JSON.parse(event.data);
