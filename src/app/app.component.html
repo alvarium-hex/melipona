@@ -1,26 +1,40 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button mat-icon-button
+          class="example-icon"
+          aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
   <span>My Chat</span>
   <span class="example-spacer"></span>
 </mat-toolbar>
 
-  <div class="history">
-    <div class="bubble" [class.bot]="message.author == 'Lovelace'" *ngFor="let message of messages">
+<div class="history">
+  <div class="bubble"
+       [class.bot]="message.author == 'computer'"
+       *ngFor="let message of messages">
+    <markdown ngPreserveWhitespaces>
       {{ message.content }}
-    </div>
+    </markdown>
   </div>
+</div>
 
 <div class="bottom-input">
   <form>
-    <mat-chip class="typing" *ngIf="isTyping">
+    <mat-chip class="typing"
+              *ngIf="isTyping">
       Bot is typing...
     </mat-chip>
     <mat-form-field class="full-width">
       <mat-label>Chat</mat-label>
-      <textarea (keyup.enter)="submit()" matInput placeholder="Ex. Tell me something interesting" [(ngModel)]="entry" name="entry"></textarea>
-      <button matSuffix mat-icon-button aria-label="Clear" (click)="submit()">
+      <textarea (keyup.enter)="submit()"
+                matInput
+                placeholder="Ex. Tell me something interesting"
+                [(ngModel)]="entry"
+                name="entry"></textarea>
+      <button matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="submit()">
         <mat-icon>send</mat-icon>
       </button>
     </mat-form-field>
