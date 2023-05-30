@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 
 export interface ChatMessage {
   content: string;
@@ -13,7 +13,7 @@ export interface ChatMessage {
 })
 export class CarpenterService {
   // private subject = AnonymousSubject<>
-  public messages: Subject<ChatMessage>;
+  public messages: ReplaySubject<ChatMessage>;
   public typing: Subject<void>;
   public ws: WebSocket;
   channel: number;
@@ -23,7 +23,7 @@ export class CarpenterService {
 
     console.info("CarpenterService: constructor");
 
-    this.messages = new Subject<ChatMessage>();
+    this.messages = new ReplaySubject<ChatMessage>();
     this.typing = new Subject<void>();
 
     this.ws = this.connect();
