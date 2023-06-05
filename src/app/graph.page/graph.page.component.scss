@@ -1,0 +1,41 @@
+.label {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  display: inline-block;
+
+  &.dt {
+    background-color: #f44336;
+  }
+
+  &.ep {
+    background-color: #9c27b0;
+  }
+
+  &.hi {
+    background-color: #3f51b5;
+  }
+
+  &.olaf {
+    background-color: #17ac48;
+  }
+
+  &.sc {
+    background-color: #d4c600;
+  }
+
+  &.et {
+    background-color: #0084ff;
+  }
+
+  &.oe {
+    background-color: #ff9800;
+  }
+}
+
+
+path.link {
+  fill: #ccc;
+  stroke: #333;
+  stroke-width: 1.5px;
+}

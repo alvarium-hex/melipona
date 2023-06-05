@@ -1,6 +1,44 @@
-<div class="h-full w-full">
-  <svg>
-    <g></g>
-  </svg>
+<app-graph [vertices]="vertices"
+           [edges]="edges"
+           [enableNodeColors]="enableNodeColors"
+           [enableEdgeColors]="enableEdgeColors"></app-graph>
+
+
+<div class="absolute bottom-2 left-2 list-none flex flex-col gap-2 bg-white opacity-75 p-3">
+  <mat-slide-toggle [(ngModel)]="enableNodeColors"
+                    name="enableNodeColors">Vertex colors</mat-slide-toggle>
+  <mat-slide-toggle [(ngModel)]="enableEdgeColors"
+                    name="enableEdgeColors">Edge colors</mat-slide-toggle>
+  <li>
+    <ul class="flex
+               items-center
+               gap-1">
+      <div class="label oe"></div>
+      Operational Excellence
+    </ul>
+    <ul class="flex items-center gap-1">
+      <div class="label dt"></div>
+      Digital Team
+    </ul>
+    <ul class="flex items-center gap-1">
+      <div class="label ep"></div>
+      EMS Program
+    </ul>
+    <ul class="flex items-center gap-1">
+      <div class="label hi"></div>
+      HiBOT
+    </ul>
+    <ul class="flex items-center gap-1">
+      <div class="label olaf"></div>
+      OLAF
+    </ul>
+    <ul class="flex items-center gap-1">
+      <div class="label sc"></div>
+      SmartCharging
+    </ul>
+    <ul class="flex items-center gap-1">
+      <div class="label et"></div>
+      Expert Tools & Discovery
+    </ul>
+  </li>
 </div>
-<!-- <graph [nodes]="vertices" [links]="edges"></graph> -->

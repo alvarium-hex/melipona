@@ -12,26 +12,19 @@ import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatChipsModule } from '@angular/material/chips';
 import { MarkdownModule } from 'ngx-markdown';
-import { GraphComponent } from './graph/graph.component';
-import { ChatComponent } from './chat/chat.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DraggableDirective } from './directives/draggable.directive';
-import { ZoomableDirective } from './directives/zoomable.directive';
 import { GraphPageComponent } from './graph.page/graph.page.component';
-import { D3Service } from './d3.service';
-import { LinkVisualComponent } from './visuals/link-visual/link-visual.component';
-import { NodeVisualComponent } from './visuals/node-visual/node-visual.component';
+import { ChatComponent } from './chat/chat.component';
+import { GraphComponent } from './graph/graph.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GraphComponent,
     ChatComponent,
-    DraggableDirective,
-    ZoomableDirective,
     GraphPageComponent,
-    LinkVisualComponent,
-    NodeVisualComponent
+    GraphComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,8 +39,10 @@ import { NodeVisualComponent } from './visuals/node-visual/node-visual.component
     MatChipsModule,
     MarkdownModule.forRoot(),
     HttpClientModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
   ],
-  providers: [D3Service],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
