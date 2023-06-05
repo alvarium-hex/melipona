@@ -12,10 +12,26 @@ import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatChipsModule } from '@angular/material/chips';
 import { MarkdownModule } from 'ngx-markdown';
+import { GraphComponent } from './graph/graph.component';
+import { ChatComponent } from './chat/chat.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DraggableDirective } from './directives/draggable.directive';
+import { ZoomableDirective } from './directives/zoomable.directive';
+import { GraphPageComponent } from './graph.page/graph.page.component';
+import { D3Service } from './d3.service';
+import { LinkVisualComponent } from './visuals/link-visual/link-visual.component';
+import { NodeVisualComponent } from './visuals/node-visual/node-visual.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GraphComponent,
+    ChatComponent,
+    DraggableDirective,
+    ZoomableDirective,
+    GraphPageComponent,
+    LinkVisualComponent,
+    NodeVisualComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +44,10 @@ import { MarkdownModule } from 'ngx-markdown';
     FormsModule,
     MatSidenavModule,
     MatChipsModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [D3Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

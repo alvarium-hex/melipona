@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ReplaySubject, Subject } from 'rxjs';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
 
 export interface ChatMessage {
   content: string;
@@ -18,7 +19,9 @@ export class CarpenterService {
   public ws: WebSocket;
   channel: number;
 
-  constructor() {
+  constructor(
+    private http: HttpClient,
+  ) {
     this.channel = this.getId();
 
     console.info("CarpenterService: constructor");
@@ -83,5 +86,12 @@ export class CarpenterService {
     }
 
     return false;
+  }
+
+  get_vertices(): Observable<Array<any>> {
+    return this.http.get<Array<any>>('http://localhost:8000/graph/vertices');
+  }
+  get_edges(): Observable<Array<any>> {
+    return this.http.get<Array<any>>('http://localhost:8000/graph/edges');
   }
 }
