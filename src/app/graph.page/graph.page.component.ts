@@ -10,6 +10,7 @@ import {
   drag,
   SimulationNodeDatum,
 } from 'd3';
+import * as d3 from 'd3';
 import { CarpenterService } from '../carpenter.service';
 
 @Component({
@@ -85,18 +86,30 @@ export class GraphPageComponent {
       return;
     }
 
+    let zoom = d3.zoom().on('zoom', (e: any) => {
+      d3.select('svg g')
+        .attr('transform', e.transform);
+    });
+
     // append the svg object to the body of the page taking the full width available
     const height = div.clientHeight;
     const width = div.clientWidth;
-    const svg = select('div').append('svg').attr('viewBox', '0 0 5000 5000');
+    d3.select('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .call(zoom as any)
+      .attr('viewBox', '0 0 5000 5000');
+
+
+    let svg = d3.select('svg g');
 
     console.log(div.clientWidth);
 
     const link = svg
       .append('g')
       .attr('stroke', '#999')
-      .attr('stroke-opacity', 0.6)
-      .attr('stroke-width', 5)
+      .attr('stroke-opacity', 0.7)
+      .attr('stroke-width', 3)
       .selectAll('line')
       .data(this.edges)
       .join('line');
@@ -112,9 +125,9 @@ export class GraphPageComponent {
     const circles = node
       .append('circle')
       .attr('r', 10)
-      // .style('fill', (n) => this.color(n.group))
+      .style('fill', (n) => this.color((n.content as any).space))
       .style('cursor', 'pointer')
-      .on('dblclick', (e) => alert(e.srcElement.__data__.name))
+      .on('click', (e) => window.open(e.srcElement.__data__.content.source, '_blank'))
       .call(
         drag()
           .on('start', (e, d: any) => dragstarted(e, d))
@@ -133,13 +146,13 @@ export class GraphPageComponent {
     node.append('title').text((n: any) => n.id);
 
     const simulation = forceSimulation(this.vertices as any)
+      .force('charge', forceManyBody().strength(-30))
+      .force('center', forceCenter(div.clientWidth / 2, div.clientHeight / 2))
       .force(
         'link',
         forceLink(this.edges as any).id((d: any) => d.id)
-          .distance(100)
+          .distance(200)
       )
-      .force('charge', forceManyBody().strength(-10))
-      .force('center', forceCenter(div.clientWidth, div.clientHeight))
       .tick()
       .on('tick', () => {
         node.attr('transform', (n: any) => 'translate(' + n.x + ',' + n.y + ')');
